@@ -1,0 +1,3 @@
+# CODEOWNERS — app tier default reviewers (Via-Vitae teams).
+# Policy is mirrored from viavitae-control; keep in sync.
+* @Via-Vitae/architects @Via-Vitae/platform

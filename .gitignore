@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtualenv (PEP 668: keep envs out of the repo)
+.venv/
+venv/
+env/
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Secrets / local config — never commit
+.env
+.env.*
+!.env.example
+*.local
+
+# Editors / IDE
+.idea/workspace.xml
+.idea/tasks.xml
+*.iml
+.vscode/
+
+# OS
+.DS_Store

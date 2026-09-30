@@ -1,0 +1,13 @@
+# gitleaks config — license-free secret scanning (GitHub Free compensating control).
+title = "viavitae-hermes-agents gitleaks config"
+
+[extend]
+# Use gitleaks default rules, add project-specific allowlist.
+useDefault = true
+
+[allowlist]
+description = "Allowlisted test/fixture paths"
+paths = [
+  '''(^|/)tests?/''',
+  '''\.env\.example$''',
+]
