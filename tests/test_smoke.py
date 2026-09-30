@@ -1,7 +1,8 @@
 """Smoke tests for the scaffold."""
 
-from app.main import create_app
 from fastapi.testclient import TestClient
+
+from viavitae_hermes.main import create_app
 
 
 def test_healthz() -> None:

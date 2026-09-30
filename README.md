@@ -30,9 +30,16 @@ uv run pytest
 ## Layout
 
 ```
-app/          # application package (hatchling wheel target)
-  agents/     # agent definitions / orchestration
-tests/        # pytest suite
+src/
+  viavitae_hermes/  # application package (hatchling wheel target)
+    agents/         # agent definitions / orchestration
+    contracts/      # Pydantic models
+    security/       # boundary guards, exclusions
+    audit/          # append-only audit stream
+config/             # policy-as-code (agents, tools, retention, approvals)
+evaluations/        # agent-behavior evals (functional, security, privacy)
+tests/              # pytest suite (unit + integration)
+docs/               # architecture, compliance, threat-model, registers
 ```
 
 ## License

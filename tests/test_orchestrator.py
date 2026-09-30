@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from app.agents.orchestrator import ViaVitaeOrchestrator, build_default_orchestrator
-from app.config import BoundarySettings
-from app.contracts.audit import AuditEventType
-from app.contracts.cases import IntakeRequest
-from app.contracts.pipeline import PipelineStatus
-from app.contracts.review import HumanReviewDecision, ReviewDecision
 from pydantic import SecretStr
+
+from viavitae_hermes.agents.orchestrator import ViaVitaeOrchestrator, build_default_orchestrator
+from viavitae_hermes.config import BoundarySettings
+from viavitae_hermes.contracts.audit import AuditEventType
+from viavitae_hermes.contracts.cases import IntakeRequest
+from viavitae_hermes.contracts.pipeline import PipelineStatus
+from viavitae_hermes.contracts.review import HumanReviewDecision, ReviewDecision
 
 
 def _orchestrator() -> ViaVitaeOrchestrator:
