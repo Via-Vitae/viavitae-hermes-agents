@@ -1,8 +1,7 @@
 """Smoke tests for the scaffold."""
 
-from fastapi.testclient import TestClient
-
 from app.main import create_app
+from fastapi.testclient import TestClient
 
 
 def test_healthz() -> None:

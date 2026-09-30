@@ -7,13 +7,15 @@ from typing import Protocol
 
 
 class Agent(Protocol):
-    name: str
+    """A named Via Vitae agent component."""
 
-    def run(self, prompt: str) -> str: ...
+    name: str
 
 
 @dataclass
 class AgentRegistry:
+    """A name-indexed collection of agents."""
+
     _agents: dict[str, Agent] = field(default_factory=dict)
 
     def register(self, agent: Agent) -> None:
