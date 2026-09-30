@@ -6,7 +6,8 @@ import re
 from pathlib import Path
 
 import pytest
-from app.security.exclusions import (
+
+from viavitae_hermes.security.exclusions import (
     FORBIDDEN_CAPABILITIES,
     FORBIDDEN_MODULE_ROOTS,
     ForbiddenCapabilityError,

@@ -6,9 +6,10 @@ These are RED-first TDD tests: the modules under test do not exist yet.
 from __future__ import annotations
 
 import pytest
-from app.config import BoundarySettings
-from app.security.boundary import BoundaryGuard, BoundaryViolationError
 from pydantic import SecretStr, ValidationError
+
+from viavitae_hermes.config import BoundarySettings
+from viavitae_hermes.security.boundary import BoundaryGuard, BoundaryViolationError
 
 
 def _settings(**overrides: object) -> BoundarySettings:

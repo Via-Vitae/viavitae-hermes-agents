@@ -3,24 +3,25 @@
 from __future__ import annotations
 
 import pytest
-from app.agents.audit import AuditAgent
-from app.agents.classification import DataClassificationAgent
-from app.agents.consent import ConsentAgent
-from app.agents.draft_response import DraftResponseAgent
-from app.agents.human_review import HumanReviewAgent, HumanReviewRequiredError
-from app.agents.intake import IntakeAgent
-from app.agents.retrieval import InformationRetrievalAgent, NullRetrievalSource
-from app.agents.safeguarding import SafeguardingEscalationAgent
-from app.agents.summary import CaseSummaryAgent
-from app.audit.stream import AuditStream
-from app.config import BoundarySettings
-from app.contracts.artifacts import CaseSummary, RetrievalResult
-from app.contracts.audit import AuditEventType
-from app.contracts.cases import Case, IntakeRequest, SensitivityLevel
-from app.contracts.consent import LawfulBasis
-from app.contracts.review import HumanReviewDecision, ReviewDecision
-from app.security.boundary import BoundaryGuard
 from pydantic import SecretStr, ValidationError
+
+from viavitae_hermes.agents.audit import AuditAgent
+from viavitae_hermes.agents.classification import DataClassificationAgent
+from viavitae_hermes.agents.consent import ConsentAgent
+from viavitae_hermes.agents.draft_response import DraftResponseAgent
+from viavitae_hermes.agents.human_review import HumanReviewAgent, HumanReviewRequiredError
+from viavitae_hermes.agents.intake import IntakeAgent
+from viavitae_hermes.agents.retrieval import InformationRetrievalAgent, NullRetrievalSource
+from viavitae_hermes.agents.safeguarding import SafeguardingEscalationAgent
+from viavitae_hermes.agents.summary import CaseSummaryAgent
+from viavitae_hermes.audit.stream import AuditStream
+from viavitae_hermes.config import BoundarySettings
+from viavitae_hermes.contracts.artifacts import CaseSummary, RetrievalResult
+from viavitae_hermes.contracts.audit import AuditEventType
+from viavitae_hermes.contracts.cases import Case, IntakeRequest, SensitivityLevel
+from viavitae_hermes.contracts.consent import LawfulBasis
+from viavitae_hermes.contracts.review import HumanReviewDecision, ReviewDecision
+from viavitae_hermes.security.boundary import BoundaryGuard
 
 
 def _settings() -> BoundarySettings:

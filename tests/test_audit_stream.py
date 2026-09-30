@@ -6,8 +6,9 @@ RED-first TDD: app.audit.stream does not exist yet.
 from __future__ import annotations
 
 import pytest
-from app.audit.stream import AuditStream, AuditTamperError
-from app.contracts.audit import AuditEvent, AuditEventType
+
+from viavitae_hermes.audit.stream import AuditStream, AuditTamperError
+from viavitae_hermes.contracts.audit import AuditEvent, AuditEventType
 
 
 def _event(case_id: str = "c1", detail: str = "x") -> AuditEvent:

@@ -16,20 +16,20 @@ code, not by convention.
 
 | Component | Module | Responsibility |
 | --- | --- | --- |
-| Via Vitae Orchestrator | `app/agents/orchestrator.py` | Sequences agents; enforces control gates; holds no data-store or network access |
-| Intake Agent | `app/agents/intake.py` | Normalizes an `IntakeRequest` into an immutable `Case` (no I/O) |
-| Data Classification Agent | `app/agents/classification.py` | Labels sensitivity; fails toward the more protective level |
-| Consent Agent | `app/agents/consent.py` | Verifies a lawful basis before personal data is processed; fails closed |
-| Information Retrieval Agent | `app/agents/retrieval.py` | Read-only, boundary-scoped retrieval via an injected source |
-| Case Summary Agent | `app/agents/summary.py` | Bounded, source-attributed summary for human review |
-| Draft Response Agent | `app/agents/draft_response.py` | Produces a draft only; structurally incapable of sending |
-| Safeguarding Escalation Agent | `app/agents/safeguarding.py` | Raises a protected, non-suppressible alert on risk triggers |
-| Human Review Agent | `app/agents/human_review.py` | Mandatory approval chokepoint; never auto-approves |
-| Audit Agent | `app/agents/audit.py` | Records every decision and data access to an append-only stream |
+| Via Vitae Orchestrator | `src/viavitae_hermes/agents/orchestrator.py` | Sequences agents; enforces control gates; holds no data-store or network access |
+| Intake Agent | `src/viavitae_hermes/agents/intake.py` | Normalizes an `IntakeRequest` into an immutable `Case` (no I/O) |
+| Data Classification Agent | `src/viavitae_hermes/agents/classification.py` | Labels sensitivity; fails toward the more protective level |
+| Consent Agent | `src/viavitae_hermes/agents/consent.py` | Verifies a lawful basis before personal data is processed; fails closed |
+| Information Retrieval Agent | `src/viavitae_hermes/agents/retrieval.py` | Read-only, boundary-scoped retrieval via an injected source |
+| Case Summary Agent | `src/viavitae_hermes/agents/summary.py` | Bounded, source-attributed summary for human review |
+| Draft Response Agent | `src/viavitae_hermes/agents/draft_response.py` | Produces a draft only; structurally incapable of sending |
+| Safeguarding Escalation Agent | `src/viavitae_hermes/agents/safeguarding.py` | Raises a protected, non-suppressible alert on risk triggers |
+| Human Review Agent | `src/viavitae_hermes/agents/human_review.py` | Mandatory approval chokepoint; never auto-approves |
+| Audit Agent | `src/viavitae_hermes/agents/audit.py` | Records every decision and data access to an append-only stream |
 
-Supporting modules: `app/config.py` (boundary settings), `app/security/boundary.py`
-(deny-by-default guard), `app/security/exclusions.py` (capability deny-list),
-`app/audit/stream.py` (hash-chained audit trail), `app/contracts/*` (typed models).
+Supporting modules: `src/viavitae_hermes/config.py` (boundary settings), `src/viavitae_hermes/security/boundary.py`
+(deny-by-default guard), `src/viavitae_hermes/security/exclusions.py` (capability deny-list),
+`src/viavitae_hermes/audit/stream.py` (hash-chained audit trail), `src/viavitae_hermes/contracts/*` (typed models).
 
 ## 3. Data flow and control gates
 
@@ -76,13 +76,13 @@ Invariants enforced by the orchestrator (see `tests/test_orchestrator.py`):
 
 ## 4. Trust and data boundary
 
-`BoundarySettings` (`app/config.py`) declares seven separate, non-shared controls:
+`BoundarySettings` (`src/viavitae_hermes/config.py`) declares seven separate, non-shared controls:
 separate database, vector index, KMS key, checkpoints namespace, audit stream,
 secrets reference, and deployment identity. It is **fail-closed**: missing values
 or any value referencing another estate (the `jol` marker) raise `ValidationError`
 at load time rather than degrading to a shared default.
 
-`BoundaryGuard` (`app/security/boundary.py`) enforces **deny-by-default egress**:
+`BoundaryGuard` (`src/viavitae_hermes/security/boundary.py`) enforces **deny-by-default egress**:
 `assert_no_external_egress(...)` always raises `BoundaryViolationError` in this
 release (empty allowlist), so autonomous external communication is structurally
 impossible rather than merely disabled.
@@ -106,11 +106,11 @@ not just unused:
 | Generic MCP tool discovery | No MCP client (`mcp` blocked); no dynamic tool registry |
 
 `tests/test_exclusions.py` fails the build if any forbidden module root is
-imported anywhere under `app/`, and asserts the runtime capability deny-list.
+imported anywhere under `src/viavitae_hermes/`, and asserts the runtime capability deny-list.
 
 ## 6. Audit trail
 
-`AuditStream` (`app/audit/stream.py`) is append-only and hash-chained (SHA-256).
+`AuditStream` (`src/viavitae_hermes/audit/stream.py`) is append-only and hash-chained (SHA-256).
 It exposes no removal or in-place mutation API. Rewriting a recorded event breaks
 the chain; the next `append`/`verify_chain` detects it and raises
 `AuditTamperError`.
