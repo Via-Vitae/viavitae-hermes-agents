@@ -24,3 +24,5 @@ jobs:
         run: uv run mypy src/viavitae_hermes
       - name: Tests (pytest)
         run: uv run pytest
+      - name: Security scan (bandit)
+        run: uv run bandit -q -c pyproject.toml -r src
