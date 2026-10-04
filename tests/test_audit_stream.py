@@ -1,6 +1,6 @@
 """Contract tests for the tamper-evident, append-only audit stream.
 
-RED-first TDD: app.audit.stream does not exist yet.
+This module is now implemented at viavitae_hermes.audit.stream; originally RED-first.
 """
 
 from __future__ import annotations
