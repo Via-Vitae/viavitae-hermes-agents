@@ -56,10 +56,10 @@ Do not pick an interpretation quietly and run with it. Make reasoning explicit.
 - Every changed line must trace directly to the user's request.
 - Do **not** "improve" adjacent code, comments, formatting, or docstrings you do not fully
   understand, even when they look wrong.
-- **Stale ≠ yours to fix.** Pre-existing problems (e.g. `CONTRIBUTING.md` still shows
-  `mypy app`; test docstrings still say "modules do not exist yet"; `test_exclusions.py`
-  still scans the removed `app/` dir) must be **mentioned, not silently edited**, unless the
-  task is explicitly about them.
+- **Stale ≠ yours to fix.** Pre-existing problems you spot while working — a gate command
+  that still says `mypy app`, a docstring claiming a module "does not exist yet" after it
+  shipped, a test globbing a removed directory — must be **mentioned, not silently edited**,
+  unless the task is explicitly about them.
 - Match the file's existing style even if you would choose differently.
 - Clean up **only your own orphans**: remove imports/variables/functions that *your* edit made
   unused. Leave pre-existing dead code alone and report it.
