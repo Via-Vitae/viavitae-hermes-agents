@@ -115,7 +115,7 @@ Treat these as load-bearing. A change that trips any of them is wrong even if it
 | No case is approved without an explicit human decision           | `test_orchestrator.py::test_no_decision_is_never_auto_approved`, `::test_approved_only_after_human_review` |
 | Boundary settings are fail-closed and reject shared `jol` refs   | `test_boundary.py::test_boundary_settings_requires_every_isolation_control`, `::test_boundary_settings_rejects_shared_jol_identifiers` |
 | External egress is denied by default                             | `test_boundary.py::test_guard_egress_is_denied_by_default`, `::test_guard_rejects_cross_estate_target` |
-| Forbidden capabilities / module imports fail the build           | `test_exclusions.py::test_forbidden_capabilities_are_rejected`, `::test_no_forbidden_module_is_imported_anywhere_in_app` |
+| Forbidden capabilities / module imports fail the build           | `test_exclusions.py::test_forbidden_capabilities_are_rejected`, `::test_no_forbidden_module_is_imported_anywhere_in_src` |
 | Audit stream is tamper-evident and exposes no removal API        | `test_audit_stream.py::test_tampering_with_a_recorded_event_is_detected`, `::test_stream_exposes_no_removal_api` |
 | There is deliberately **no `SENT` state** in the pipeline        | ARCHITECTURE.md §3; `contracts/pipeline.py::PipelineStatus`                |
 

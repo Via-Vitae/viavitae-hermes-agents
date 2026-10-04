@@ -33,7 +33,7 @@ def test_permitted_capability_is_allowed() -> None:
     assert_capability_permitted("read_only_retrieval")
 
 
-def test_no_forbidden_module_is_imported_anywhere_in_app() -> None:
+def test_no_forbidden_module_is_imported_anywhere_in_src() -> None:
     offenders: list[str] = []
     for path in _python_files():
         text = path.read_text(encoding="utf-8")
