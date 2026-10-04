@@ -14,12 +14,12 @@ from viavitae_hermes.security.exclusions import (
     assert_capability_permitted,
 )
 
-_APP_DIR = Path(__file__).resolve().parents[1] / "app"
+_SRC_DIR = Path(__file__).resolve().parents[1] / "src" / "viavitae_hermes"
 _IMPORT_RE = re.compile(r"^\s*(?:import|from)\s+([A-Za-z0-9_.]+)", re.MULTILINE)
 
 
 def _python_files() -> list[Path]:
-    return sorted(_APP_DIR.rglob("*.py"))
+    return sorted(_SRC_DIR.rglob("*.py"))
 
 
 def test_forbidden_capabilities_are_rejected() -> None:
