@@ -21,7 +21,7 @@ jobs:
       - name: Format check (ruff)
         run: uv run ruff format --check .
       - name: Type check (mypy)
-        run: uv run mypy src/viavitae_hermes
+        run: uv run mypy src/viavitae_hermes tests
       - name: Tests (pytest)
         run: uv run pytest
       - name: Security scan (bandit)

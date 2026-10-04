@@ -29,7 +29,7 @@ def _settings(**overrides: object) -> BoundarySettings:
 def test_boundary_settings_requires_every_isolation_control() -> None:
     # Missing the separate KMS key must fail closed at construction time.
     with pytest.raises(ValidationError):
-        BoundarySettings(  # type: ignore[call-arg]
+        BoundarySettings(
             database_dsn=SecretStr("postgresql+psycopg://x"),
             vector_index_id="viavitae-cases-v1",
             checkpoint_namespace="viavitae",
@@ -47,7 +47,7 @@ def test_boundary_settings_rejects_shared_jol_identifiers() -> None:
 
 def test_boundary_settings_rejects_non_viavitae_estate() -> None:
     with pytest.raises(ValidationError):
-        _settings(estate="jol")  # type: ignore[typeddict-item]
+        _settings(estate="jol")
 
 
 def test_guard_egress_is_denied_by_default() -> None:
