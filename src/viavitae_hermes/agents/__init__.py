@@ -1,6 +1,6 @@
 """Agent definitions and orchestration for the Via Vitae estate.
 
-The orchestrator factory lives in :mod:`app.agents.orchestrator` and is imported
+The orchestrator factory lives in :mod:`viavitae_hermes.agents.orchestrator` and is imported
 on demand (never at package import) so that the health surface stays free of any
 boundary configuration dependency.
 """

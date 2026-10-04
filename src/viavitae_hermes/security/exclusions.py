@@ -7,7 +7,7 @@ unused. Two layers cooperate:
   capability is exercised.
 * :data:`FORBIDDEN_MODULE_ROOTS` — third-party import roots whose presence would
   imply an excluded capability. A structural test asserts none are imported
-  anywhere under ``app``.
+  anywhere under ``src/viavitae_hermes``.
 """
 
 from __future__ import annotations

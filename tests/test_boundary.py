@@ -1,6 +1,6 @@
 """Contract tests for the Via Vitae data boundary (config + guard).
 
-These are RED-first TDD tests: the modules under test do not exist yet.
+These modules are now implemented; originally written RED-first.
 """
 
 from __future__ import annotations

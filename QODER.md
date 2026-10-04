@@ -56,10 +56,10 @@ Do not pick an interpretation quietly and run with it. Make reasoning explicit.
 - Every changed line must trace directly to the user's request.
 - Do **not** "improve" adjacent code, comments, formatting, or docstrings you do not fully
   understand, even when they look wrong.
-- **Stale ≠ yours to fix.** Pre-existing problems (e.g. `CONTRIBUTING.md` still shows
-  `mypy app`; test docstrings still say "modules do not exist yet"; `test_exclusions.py`
-  still scans the removed `app/` dir) must be **mentioned, not silently edited**, unless the
-  task is explicitly about them.
+- **Stale ≠ yours to fix.** Pre-existing problems you spot while working — a gate command
+  that still says `mypy app`, a docstring claiming a module "does not exist yet" after it
+  shipped, a test globbing a removed directory — must be **mentioned, not silently edited**,
+  unless the task is explicitly about them.
 - Match the file's existing style even if you would choose differently.
 - Clean up **only your own orphans**: remove imports/variables/functions that *your* edit made
   unused. Leave pre-existing dead code alone and report it.
@@ -115,7 +115,7 @@ Treat these as load-bearing. A change that trips any of them is wrong even if it
 | No case is approved without an explicit human decision           | `test_orchestrator.py::test_no_decision_is_never_auto_approved`, `::test_approved_only_after_human_review` |
 | Boundary settings are fail-closed and reject shared `jol` refs   | `test_boundary.py::test_boundary_settings_requires_every_isolation_control`, `::test_boundary_settings_rejects_shared_jol_identifiers` |
 | External egress is denied by default                             | `test_boundary.py::test_guard_egress_is_denied_by_default`, `::test_guard_rejects_cross_estate_target` |
-| Forbidden capabilities / module imports fail the build           | `test_exclusions.py::test_forbidden_capabilities_are_rejected`, `::test_no_forbidden_module_is_imported_anywhere_in_app` |
+| Forbidden capabilities / module imports fail the build           | `test_exclusions.py::test_forbidden_capabilities_are_rejected`, `::test_no_forbidden_module_is_imported_anywhere_in_src` |
 | Audit stream is tamper-evident and exposes no removal API        | `test_audit_stream.py::test_tampering_with_a_recorded_event_is_detected`, `::test_stream_exposes_no_removal_api` |
 | There is deliberately **no `SENT` state** in the pipeline        | ARCHITECTURE.md §3; `contracts/pipeline.py::PipelineStatus`                |
 
