@@ -82,7 +82,7 @@ accountable owner before any compliance assertion:
 
 The only compliance-relevant evidence this repository can currently produce is
 automated and repeatable via CI (`ruff check`, `ruff format --check`,
-`mypy app`, `pytest`) plus `gitleaks` and `bandit`. Test names encode the
+`mypy src/viavitae_hermes`, `pytest`) plus `gitleaks` and `bandit`. Test names encode the
 enforced invariants (consent halt, non-suppressible safeguarding, mandatory
 human review, exclusion grep, audit tamper detection). This is engineering
 evidence, **not** a compliance attestation.
