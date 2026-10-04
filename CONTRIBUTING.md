@@ -20,9 +20,9 @@ Run before pushing:
 
 ```bash
 uv run ruff check . && uv run ruff format --check .
-uv run mypy app
+uv run mypy src/viavitae_hermes
 uv run pytest
-uv run bandit -c pyproject.toml -r app
+uv run bandit -c pyproject.toml -r src
 ```
 
 `pre-commit` runs gitleaks + hygiene hooks locally; CI runs gitleaks as a
