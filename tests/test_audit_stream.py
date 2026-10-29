@@ -56,3 +56,16 @@ def test_events_returns_immutable_view() -> None:
     stream.append(_event())
     events = stream.events()
     assert isinstance(events, tuple)
+
+
+@pytest.mark.parametrize("missing", ["event", "hash"])
+def test_mismatched_history_is_detected(missing: str) -> None:
+    stream = AuditStream()
+    stream.append(_event())
+    if missing == "event":
+        stream._events.pop()
+    else:
+        stream._chain.pop()
+    assert stream.verify_chain() is False
+    with pytest.raises(AuditTamperError):
+        stream.append(_event())

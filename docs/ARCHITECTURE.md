@@ -78,7 +78,7 @@ Invariants enforced by the orchestrator (see `tests/test_orchestrator.py`):
 
 `BoundarySettings` (`src/viavitae_hermes/config.py`) declares seven separate, non-shared controls:
 separate database, vector index, KMS key, checkpoints namespace, audit stream,
-secrets reference, and deployment identity. It is **fail-closed**: missing values
+secrets reference, and deployment identity. It is **fail-closed**: missing or whitespace-only values
 or any value referencing another estate (the `jol` marker) raise `ValidationError`
 at load time rather than degrading to a shared default.
 
@@ -113,7 +113,10 @@ imported anywhere under `src/viavitae_hermes/`, and asserts the runtime capabili
 `AuditStream` (`src/viavitae_hermes/audit/stream.py`) is append-only and hash-chained (SHA-256).
 It exposes no removal or in-place mutation API. Rewriting a recorded event breaks
 the chain; the next `append`/`verify_chain` detects it and raises
-`AuditTamperError`.
+`AuditTamperError`. Unequal event/hash lengths are also rejected.
+A matching truncation of both lists or a complete chain rewrite cannot be detected
+without an independently retained checkpoint; this in-memory chain is not durable
+or independently anchored.
 
 ## 7. Scaffold limitations (honest status)
 

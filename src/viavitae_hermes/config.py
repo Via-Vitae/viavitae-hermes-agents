@@ -58,6 +58,9 @@ class BoundarySettings(BaseSettings):
             "deployment_identity": self.deployment_identity,
         }
         for name, value in controls.items():
+            if not value.strip():
+                msg = f"Via Vitae boundary control {name!r} must not be blank"
+                raise ValueError(msg)
             if _FORBIDDEN_ESTATE_MARKER in value.casefold():
                 msg = (
                     f"Via Vitae boundary control {name!r} must not reference "

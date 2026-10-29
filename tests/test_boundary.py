@@ -66,3 +66,21 @@ def test_guard_verify_passes_for_isolated_settings() -> None:
     guard = BoundaryGuard(_settings())
     # Isolated, Viavitae-only settings must verify without raising.
     guard.verify_isolation()
+
+
+@pytest.mark.parametrize(
+    "control",
+    [
+        "database_dsn",
+        "vector_index_id",
+        "kms_key_id",
+        "checkpoint_namespace",
+        "audit_stream_id",
+        "secrets_ref",
+        "deployment_identity",
+    ],
+)
+@pytest.mark.parametrize("value", ["", "   ", "\t\n"])
+def test_boundary_rejects_blank_controls(control: str, value: str) -> None:
+    with pytest.raises(ValidationError, match="must not be blank"):
+        _settings(**{control: value})
