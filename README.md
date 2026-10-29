@@ -45,3 +45,8 @@ docs/               # architecture, compliance, threat-model, registers
 ## License
 
 Proprietary — all rights reserved. See [LICENSE](LICENSE).
+
+## Qoder adoption
+
+See [the integration decision and step-by-step guide](docs/QODER-INTEGRATION.md).
+It proposes a supervised developer pilot; no external runtime is enabled in Hermes.

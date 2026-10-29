@@ -52,6 +52,8 @@ class AuditStream:
 
     def verify_chain(self) -> bool:
         """Return True only if every link matches its recorded event."""
+        if len(self._events) != len(self._chain):
+            return False
         previous = _GENESIS
         for event, expected in zip(self._events, self._chain, strict=True):
             computed = _link_hash(previous, event)
